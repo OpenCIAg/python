@@ -11,10 +11,11 @@ build:
     - docker-builder
   script:
     - docker build --pull -t ${REGISTRY}/ciag/python:3.7  .
+    - docker push ${REGISTRY}/ciag/python:3.7
 
 publish:
   image: docker:latest
-  stage: build
+  stage: publish
   only:
     - master
   tags:
