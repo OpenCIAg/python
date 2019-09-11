@@ -11,15 +11,16 @@ build:
     - docker-builder
   script:
     - docker build --pull -t ${REGISTRY}/ciag/python:3.7  .
+    - docker push ${REGISTRY}/ciag/python:3.7
 
 publish:
   image: docker:latest
-  stage: build
+  stage: publish
   only:
     - master
   tags:
     - docker-builder
   script:
-    - docker tag ${REGISTRY}/ciag/python:3.7 ciag/python3.7
+    - docker tag ${REGISTRY}/ciag/python:3.7 ciag/python:3.7
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
-    - docker push ciag/python3.7
+    - docker push ciag/python:3.7
