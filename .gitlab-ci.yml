@@ -21,6 +21,7 @@ publish:
   tags:
     - docker-builder
   script:
+    - docker pull ${REGISTRY}/ciag/python:3.7 ciag/python:3.7
     - docker tag ${REGISTRY}/ciag/python:3.7 ciag/python:3.7
     - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker push ciag/python:3.7
